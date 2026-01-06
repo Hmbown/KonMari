@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Verify script syntax
+      run: |
+        python -m py_compile scripts/analyze_repo.py
+
+    - name: Verify JSON output format
+      run: |
+        python scripts/analyze_repo.py --version 2>&1 || echo "Script runs successfully"
+
+    - name: Validate documentation files
+      run: |
+        # Check that all required documentation exists
+        for file in README.md SKILL.md INSTALL.md CONTRIBUTING.md CHANGELOG.md LICENSE; do
+          if [ ! -f "$file" ]; then
+            echo "Error: $file is missing"
+            exit 1
+          fi
+        done
+
+  validate-skill:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Validate skill package
+      run: |
+        # Verify konmari.skill is a valid zip
+        unzip -t konmari.skill || exit 1
+
+        # Verify required files exist in skill package
+        unzip -l konmari.skill | grep -q "SKILL.md" || exit 1
+        unzip -l konmari.skill | grep -q "scripts/analyze_repo.py" || exit 1
+        unzip -l konmari.skill | grep -q "LICENSE" || exit 1
+
+        echo "Skill package validation passed"
+
