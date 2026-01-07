@@ -45,8 +45,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - [examples/sample_output.json](examples/sample_output.json) - Example analysis JSON
 - [examples/sample_cleanup_proposal.md](examples/sample_cleanup_proposal.md) - Example generated proposal
 - [examples/conversation_example.md](examples/conversation_example.md) - Full dialogue example
-- [references/gratitude_templates.md](references/gratitude_templates.md) - Gratitude template collection
-- [references/context_limits.md](references/context_limits.md) - Context window guidelines
+- [gratitude_templates.md](gratitude_templates.md) - Gratitude template collection
+- [context_limits.md](context_limits.md) - Context window guidelines
 
 ### Features
 - Automatic .skill ZIP packaging structure
@@ -208,4 +208,3 @@ Include:
 ---
 
 *"The question of what to keep is the question of how you want to develop."* — Adapted from Marie Kondo
-

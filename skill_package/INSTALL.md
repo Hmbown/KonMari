@@ -1,6 +1,6 @@
 # KonMari Skill Installation Guide
 
-This guide covers installing the KonMari repository decluttering skill for use with Claude Code, Cursor IDE, or as a standalone tool.
+This guide covers installing the KonMari repository decluttering skill for use with any skill-based AI assistant, plus a standalone tool option.
 
 ## System Requirements
 
@@ -15,9 +15,9 @@ This guide covers installing the KonMari repository decluttering skill for use w
 
 ## Installation Methods
 
-### Method 1: Claude Code / Cursor IDE (Recommended)
+### Method 1: Skill-Based AI Assistant (Recommended)
 
-For users of Claude Code or Cursor IDE with Claude integration:
+For users of any AI assistant that supports `.skill` bundles:
 
 #### Step 1: Download the Skill File
 
@@ -45,7 +45,7 @@ cp konmari.skill ~/.claude/skills/
 ```
 
 Or via the IDE:
-1. Open Claude Code / Cursor settings
+1. Open your AI assistant's settings
 2. Navigate to Skills
 3. Add new skill and select `konmari.skill`
 
@@ -146,14 +146,14 @@ konmari /path/to/repo
 
 Run the analyzer on the konmari repository itself:
 ```bash
-python3 scripts/analyze_repo.py /path/to/konmari
+python3 analyze_repo.py /path/to/konmari
 ```
 
 Expected output: JSON structure with categories and findings. The repo should show as "already sparks joy" since it's well-maintained.
 
 ### Test in IDE
 
-Open a repository in Claude Code/Cursor and trigger:
+Open a repository in your AI assistant and trigger:
 ```
 clean up this repo
 ```
@@ -203,10 +203,10 @@ chmod +x scripts/analyze_repo.py
 
 ### Skill Not Showing in IDE
 
-**Issue**: Claude Code/Cursor doesn't list the skill
+**Issue**: Your AI assistant doesn't list the skill
 
 **Solution**:
-1. Verify `.skill` file is in correct directory: `~/.claude/skills/`
+1. Verify `.skill` file is in the correct directory (example: `~/.claude/skills/`)
 2. Restart IDE completely (close and reopen)
 3. Check file permissions: `ls -la ~/.claude/skills/`
 4. Verify `.skill` is a valid ZIP: `unzip -l konmari.skill`
@@ -296,4 +296,3 @@ pip uninstall konmari-skill
 ---
 
 Ready to transform your codebase? See [README.md](README.md) for usage guide.
-

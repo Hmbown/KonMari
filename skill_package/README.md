@@ -10,7 +10,7 @@ A repository cleanup ceremony inspired by Marie Kondo's KonMari Method for AI-as
 
 ## What is KonMari?
 
-KonMari is an AI skill that performs end-of-session closeout rituals for development workflows. It analyzes repositories following a sacred order to help you identify files, dependencies, and code that no longer spark clarity.
+KonMari is a skill that performs end-of-session closeout rituals for development workflows. It analyzes repositories following a sacred order to help you identify files, dependencies, and code that no longer spark clarity.
 
 ### The Core Philosophy
 
@@ -26,6 +26,14 @@ KonMari is an AI skill that performs end-of-session closeout rituals for develop
 - A git repository (optional but recommended for full analysis)
 
 ### Installation
+
+#### For Skill-Based AI Assistants
+
+1. Download the `konmari.skill` file from this repository
+2. Install it in your AI assistant's skills directory
+3. Restart or refresh your skill list
+
+If your AI tool uses a different skill-loading mechanism, keep the same `konmari.skill` file and follow your tool's instructions for loading skills.
 
 #### For Claude Code / Cursor Users
 
@@ -47,11 +55,17 @@ KonMari is an AI skill that performs end-of-session closeout rituals for develop
 
 See [INSTALL.md](INSTALL.md) for detailed installation instructions.
 
+### Compatibility Notes
+
+- Works with any AI assistant that can load `.skill` bundles or execute the analyzer script.
+- If your AI tool does not support scripts, you can still use the workflow in `SKILL.md` and manually gather the repo facts.
+- Expand AI artifact detection by editing `AI_TOOL_ARTIFACTS` and `AI_COMMIT_SIGNATURES` in `analyze_repo.py`.
+
 ## Usage
 
 ### Trigger the Skill
 
-In Claude Code or Cursor, use any of these commands to start the KonMari ceremony:
+In your AI assistant, use any of these commands to start the KonMari ceremony:
 
 - `clean up this repo`
 - `what files can I delete`
@@ -134,7 +148,7 @@ KonMari detects and analyzes dependencies for:
 
 ### Smart Analysis
 - Confidence scoring (0-100) for each recommendation
-- Claude Code session artifact detection
+- AI session artifact detection (expandable)
 - Git archaeology (AI-generated commits, stale branches)
 - Monorepo support (lerna, pnpm, Nx, Turborepo)
 - Context-heavy file detection (>500 lines or >4K tokens)
@@ -170,9 +184,8 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Credits
 
-Inspired by Marie Kondo's *The Life-Changing Magic of Tidying Up* and adapted for software development by the Claude Code community.
+Inspired by Marie Kondo's *The Life-Changing Magic of Tidying Up* and adapted for software development by the community.
 
 ---
 
 *"Life truly begins only after you have put your codebase in order."* — Marie Kondo (adapted)
-

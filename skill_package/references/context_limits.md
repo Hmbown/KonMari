@@ -1,8 +1,8 @@
-# Claude Context Limits Reference
+# AI Context Limits Reference
 
 ## Practical Limits
 
-While Claude's technical context window is large (~200K tokens), effective working limits are lower:
+While modern AI context windows can be large, effective working limits are lower:
 
 | Metric | Recommended Max | Hard Limit |
 |--------|-----------------|------------|
@@ -48,18 +48,20 @@ Rough formula: `tokens ≈ characters / 4`
 
 ---
 
-## Claude Code Session Patterns
+## AI Assistant Session Patterns
 
 ### Common Session Artifacts
 
-These files often accumulate during Claude Code sessions and may become cruft:
+These files often accumulate during AI-assisted sessions and may become cruft:
 
 | Pattern | Description | Typical Lifespan |
 |---------|-------------|------------------|
 | `CLAUDE-CONTEXT.md` | Session context briefing | Single session |
+| `AI-CONTEXT.md` | Session context briefing | Single session |
 | `PLAN.md` | Implementation planning | Until implemented |
 | `DEBUG.md` | Debugging notes | Until bug fixed |
-| `TODO-claude.md` | Claude-specific todos | Varies |
+| `TODO-claude.md` | AI-specific todos | Varies |
+| `TODO-ai.md` | AI-specific todos | Varies |
 | `NOTES.md` | Session notes | Until consolidated |
 | `scratch_*.py` | Quick experiments | Single session |
 | `debug_*.js` | Debug scripts | Until bug fixed |
@@ -68,13 +70,13 @@ These files often accumulate during Claude Code sessions and may become cruft:
 
 ### Conversation Artifacts in Code
 
-Claude Code sessions may leave these patterns in source files:
+AI assistant sessions may leave these patterns in source files:
 
 ```python
 # Q: Should this be async?
 # A: Yes, because the API call blocks...
 
-# TODO: Claude - remove after testing
+# TODO: AI - remove after testing
 # FIXME: session artifact
 ```
 
@@ -82,20 +84,24 @@ These are usually meant to be temporary and can be safely cleaned up after the s
 
 ### Commit Message Patterns
 
-Claude Code commits include this signature:
+AI-assisted commits often include these signatures:
 
 ```
-🤖 Generated with Claude Code
-
+Generated with Claude Code
 Co-Authored-By: Claude <noreply@anthropic.com>
+Co-Authored-By: GitHub Copilot <...>
+Generated with Codex
 ```
 
 This makes AI-generated commits identifiable for git archaeology.
 
 ### Branch Naming Patterns
 
-Experimental branches from Claude Code sessions often follow:
-- `claude-*` - Named Claude attempts
+Experimental branches from AI sessions often follow:
+- `claude-*` - Claude attempts
+- `cursor-*` - Cursor attempts
+- `copilot-*` - Copilot attempts
+- `codex-*` - Codex attempts
 - `attempt-*` - Numbered attempts
 - `wip-*` - Work in progress
 - `test-refactor-*` - Experimental refactors
@@ -105,11 +111,11 @@ These may become stale if the experiment concludes or is abandoned.
 
 ### Directory Patterns
 
-Claude Code may create or populate these directories:
+AI tools may create or populate these directories:
 - `.claude/` - Claude Code configuration
-- `.claude/commands/` - Custom slash commands
-- `.claude/skills/` - Project skills
-- `.claude/context/` - Persistent context files
+- `.cursor/` - Cursor configuration
+- `.codex/` - Codex configuration
+- `.ai/` - Generic AI tool configuration
 
 ### Config File Patterns
 
@@ -135,7 +141,7 @@ Claude Code may create or populate these directories:
 
 ### Periodic Maintenance
 1. Review `.claude/commands/` for experimental commands
-2. Check for orphaned branches with Claude patterns
+2. Check for orphaned branches with AI patterns
 3. Audit AI-generated commits for squash opportunities
 4. Clean up experimental dependencies that were never used
 

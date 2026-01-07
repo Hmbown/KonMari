@@ -1,6 +1,6 @@
 ---
 name: konmari
-description: Repository hygiene skill inspired by Marie Kondo's KonMari Method. An end-of-session closeout ritual for AI-assisted development. Triggers on "clean up this repo", "what files can I delete", "reduce context bloat", "find stale files", "what doesn't spark joy", "wrap up", "done for today", "close out session", "end of task", "tidy up", "declutter", "/konmari".
+description: Repository hygiene skill inspired by Marie Kondo's KonMari Method. An end-of-session closeout ritual for AI-assisted development across any skill-capable AI or agent. Triggers on "clean up this repo", "what files can I delete", "reduce context bloat", "find stale files", "what doesn't spark joy", "wrap up", "done for today", "close out session", "end of task", "tidy up", "declutter", "/konmari".
 ---
 
 # KonMari Repository Decluttering
@@ -73,6 +73,11 @@ The script outputs structured JSON with:
 - Quick wins vs decisions needed
 - Celebration if already clean
 
+If the analyzer cannot run, fall back to a manual scan:
+- Use `rg` to find stale patterns (backup, temp, debug, scratch)
+- Use `git log --stat` to spot untouched files
+- Manually build the category tables in `CLEANUP_PROPOSAL.md`
+
 ### 3. Generate the Cleanup Proposal
 
 Create `CLEANUP_PROPOSAL.md` in the repo root:
@@ -137,7 +142,7 @@ Files that are active, well-maintained, and aligned with your vision.
 
 ## Git Archaeology
 
-- Claude Code commits (last 90 days): X
+- AI-assisted commits (last 90 days): X
 - AI-pattern commits: Y
 - Potentially stale branches: [list]
 - Consider: `git gc` if history is cluttered
@@ -218,14 +223,14 @@ After execution, append to CLEANUP_PROPOSAL.md:
 - Not modified in 60+ days AND matches cruft pattern
 - Never integrated into main codebase
 - Duplicate of another file
-- Claude Code session artifact no longer needed
+- AI session artifact no longer needed
 
 ### Confidence Scoring
 
 | Signal | Confidence Impact |
 |--------|-------------------|
 | Matches stale pattern | +20 |
-| Claude Code artifact | +15 |
+| AI session artifact | +15 |
 | Duplicate detected | +15 |
 | Age > 180 days | +15 |
 | Age > 90 days | +10 |
@@ -234,14 +239,14 @@ After execution, append to CLEANUP_PROPOSAL.md:
 | Modified < 30 days | -20 |
 | Imported elsewhere | -40 |
 
-## Claude Code Integration
+## AI Tool Integration
 
-This skill detects Claude Code-specific patterns:
+This skill detects AI tool session patterns (expand as needed in `analyze_repo.py`):
 
-- **Commit signatures**: `Generated with Claude Code`, `Co-Authored-By: Claude`
-- **Session artifacts**: `CLAUDE-CONTEXT.md`, `PLAN.md`, `DEBUG.md`
+- **Commit signatures**: `Generated with Claude Code`, `Co-Authored-By: Claude`, `Co-Authored-By: GitHub Copilot`, `Generated with Codex`
+- **Session artifacts**: `CLAUDE-CONTEXT.md`, `PLAN.md`, `DEBUG.md`, `AI-CONTEXT.md`
 - **Conversation artifacts**: Q&A comments, debug scripts, verify files
-- **Experimental branches**: `claude-*`, `attempt-*`, `wip-*`
+- **Experimental branches**: `claude-*`, `cursor-*`, `copilot-*`, `codex-*`, `attempt-*`, `wip-*`
 
 ## Ecosystem Support
 

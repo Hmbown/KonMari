@@ -29,7 +29,7 @@ In the KonMari Method, expressing gratitude before discarding is not optional â€
 - "Gratitude for being a copy when copies mattered. We trust our version control now."
 - "Thank you for the assurance you provided. We're confident enough to let go."
 
-### Claude Code Session Artifacts
+### AI Session Artifacts
 - "Thank you, session notes, for documenting our conversation. Those decisions are now implemented."
 - "Gratitude for capturing the context of that session. The work is done."
 - "Thank you, PLAN.md, for guiding implementation. The plan is now reality."

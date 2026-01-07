@@ -10,7 +10,7 @@ Analyzes repositories following the sacred KonMari order:
 4. Configuration (Komono) - scattered, needs attention
 5. Legacy Code (Sentimental) - hardest, requires honed judgment
 
-Outputs structured JSON for Claude Code to present as a cleanup ceremony.
+Outputs structured JSON for an AI assistant to present as a cleanup ceremony.
 """
 
 import os
@@ -63,8 +63,8 @@ DEAD_FILE_PATTERNS = [
     r"^verify_.*\.(py|js|ts)$",
 ]
 
-# Claude Code specific artifacts
-CLAUDE_CODE_ARTIFACTS = [
+# AI tool session artifacts (expand as needed for your stack)
+AI_TOOL_ARTIFACTS = [
     r"^CLAUDE-CONTEXT\.md$",
     r"^PLAN\.md$",
     r"^DEBUG\.md$",
@@ -72,6 +72,9 @@ CLAUDE_CODE_ARTIFACTS = [
     r"^NOTES\.md$",
     r"^context\.md$",
     r"^session-notes\.md$",
+    r"^AI-CONTEXT\.md$",
+    r"^AI-NOTES\.md$",
+    r"^TODO-ai\.md$",
 ]
 
 # =============================================================================
@@ -102,8 +105,16 @@ AI_COMMIT_PATTERNS = [
     r"minor\s+(changes|updates|fixes)",
 ]
 
-CLAUDE_COMMIT_SIGNATURE = "Generated with Claude Code"
-CLAUDE_COAUTHOR = "Co-Authored-By: Claude"
+AI_COMMIT_SIGNATURES = [
+    "Generated with Claude Code",
+    "Co-Authored-By: Claude",
+    "Co-Authored-By: GitHub Copilot",
+    "Generated with Copilot",
+    "Co-Authored-By: OpenAI Codex",
+    "Generated with Codex",
+    "Co-Authored-By: Cursor",
+    "Generated with Cursor",
+]
 
 # =============================================================================
 # CONTEXT LIMITS
@@ -181,7 +192,7 @@ def calculate_age_days(mtime: float) -> int:
 def calculate_confidence(
     file_info: Dict,
     matches_pattern: bool = False,
-    is_claude_artifact: bool = False,
+    is_ai_artifact: bool = False,
     is_duplicate: bool = False,
     is_imported: bool = False,
     age_days: int = 0,
@@ -199,7 +210,7 @@ def calculate_confidence(
     # Positive signals (increase confidence to delete)
     if matches_pattern:
         score += 20
-    if is_claude_artifact:
+    if is_ai_artifact:
         score += 15
     if is_duplicate:
         score += 15
@@ -244,13 +255,13 @@ def find_dead_files(repo_path: str) -> List[Dict]:
             rel_path = os.path.relpath(filepath, repo_path)
 
             matched_pattern = None
-            is_claude_artifact = False
+            is_ai_artifact = False
 
-            # Check Claude Code artifacts first
-            for pattern in CLAUDE_CODE_ARTIFACTS:
+            # Check AI tool artifacts first
+            for pattern in AI_TOOL_ARTIFACTS:
                 if re.match(pattern, file, re.IGNORECASE):
                     matched_pattern = pattern
-                    is_claude_artifact = True
+                    is_ai_artifact = True
                     break
 
             # Check dead file patterns
@@ -268,7 +279,7 @@ def find_dead_files(repo_path: str) -> List[Dict]:
                     confidence = calculate_confidence(
                         {"path": rel_path},
                         matches_pattern=True,
-                        is_claude_artifact=is_claude_artifact,
+                        is_ai_artifact=is_ai_artifact,
                         age_days=age_days,
                     )
 
@@ -282,7 +293,7 @@ def find_dead_files(repo_path: str) -> List[Dict]:
                             ),
                             "age_days": age_days,
                             "confidence": confidence,
-                            "is_claude_artifact": is_claude_artifact,
+                            "is_ai_artifact": is_ai_artifact,
                             "category": "dead_files",
                             "category_name": "Dead Files (Clothing)",
                             "gratitude": generate_gratitude(
@@ -999,7 +1010,7 @@ def find_legacy_code(repo_path: str) -> List[Dict]:
 def analyze_commits(repo_path: str, days: int = 90) -> Dict:
     """Analyze recent commits for AI-generated patterns."""
     if not is_git_repo(repo_path):
-        return {"has_git": False, "ai_commits": [], "claude_commits": []}
+        return {"has_git": False, "ai_commits": [], "ai_signed_commits": []}
 
     since_date = (datetime.now() - timedelta(days=days)).strftime("%Y-%m-%d")
 
@@ -1018,12 +1029,12 @@ def analyze_commits(repo_path: str, days: int = 90) -> Dict:
         return {
             "has_git": True,
             "ai_commits": [],
-            "claude_commits": [],
+            "ai_signed_commits": [],
             "total_commits": 0,
         }
 
     ai_commits = []
-    claude_commits = []
+    ai_signed_commits = []
     total_commits = 0
 
     for entry in log_output.split("<<<END>>>"):
@@ -1040,15 +1051,15 @@ def analyze_commits(repo_path: str, days: int = 90) -> Dict:
         body = parts[4] if len(parts) > 4 else ""
         full_message = subject + "\n" + body
 
-        # Check for Claude Code signature
-        if CLAUDE_COMMIT_SIGNATURE in full_message or CLAUDE_COAUTHOR in full_message:
-            claude_commits.append(
+        # Check for AI tool signatures
+        if any(signature in full_message for signature in AI_COMMIT_SIGNATURES):
+            ai_signed_commits.append(
                 {
                     "hash": commit_hash[:8],
                     "message": subject[:100],
                     "date": date[:10],
                     "author": author,
-                    "is_claude": True,
+                    "is_ai_signed": True,
                 }
             )
             continue
@@ -1076,8 +1087,8 @@ def analyze_commits(repo_path: str, days: int = 90) -> Dict:
     return {
         "has_git": True,
         "total_commits": total_commits,
-        "claude_commits": claude_commits[:10],
-        "claude_commit_count": len(claude_commits),
+        "ai_signed_commits": ai_signed_commits[:10],
+        "ai_signed_commit_count": len(ai_signed_commits),
         "ai_commits": sorted(ai_commits, key=lambda x: x["ai_score"], reverse=True)[
             :10
         ],
@@ -1093,6 +1104,9 @@ def find_stale_branches(repo_path: str) -> List[Dict]:
 
     stale_patterns = [
         r"^claude-",
+        r"^cursor-",
+        r"^copilot-",
+        r"^codex-",
         r"^attempt-",
         r"^test-",
         r"^wip-",
@@ -1131,7 +1145,7 @@ def find_stale_branches(repo_path: str) -> List[Dict]:
 
 
 def find_context_heavy_files(repo_path: str) -> List[Dict]:
-    """Find files that may bloat Claude's context window."""
+    """Find files that may bloat an AI assistant's context window."""
     heavy_files = []
 
     for root, dirs, files in os.walk(repo_path):
