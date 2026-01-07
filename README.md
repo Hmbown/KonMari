@@ -1,5 +1,9 @@
 # KonMari Repository Decluttering Skill
 
+<p align="center">
+  <img src="konmari.gif" width="240" alt="KonMari preview">
+</p>
+
 *"The question of what code to keep is the question of how you want to develop."*
 
 A repository cleanup ceremony inspired by Marie Kondo's KonMari Method for AI-assisted development. Not just cleanup - transformation.
