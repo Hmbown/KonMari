@@ -135,6 +135,20 @@ Commit message prefixes:
 - `test:` - Adding or updating tests
 - `chore:` - Maintenance tasks
 
+#### Skill Bundle Updates
+
+When you change `skill_package/`, rebuild the bundle:
+
+```bash
+scripts/build_skill.sh
+```
+
+Optional: enable the local git hook to auto-rebuild on commit:
+
+```bash
+git config core.hooksPath .githooks
+```
+
 #### 6. Push and Create Pull Request
 
 ```bash
@@ -335,4 +349,3 @@ By contributing, you agree that your contributions will be licensed under the MI
 Thank you for helping make KonMari better for everyone!
 
 *"The objective of tidying is not just to clean, but to feel clarity working within that environment."*
-
