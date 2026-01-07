@@ -37,7 +37,13 @@ If you do not have `konmari.skill`, build and install it from this repo with one
 ./scripts/install_skill.sh
 ```
 
-This builds `konmari.skill` and installs it into `~/.claude/skills/` by default.
+This builds `konmari.skill` and installs it into `~/.claude/skills/` by default. If `CODEX_HOME` is set, it installs to `$CODEX_HOME/skills`.
+
+You can also use:
+
+```bash
+make install
+```
 
 Note: `konmari.skill` is generated from `skill_package/` and may not be committed in the repo.
 
@@ -75,6 +81,12 @@ If you cloned the repo, you can build and install with one command:
 ```
 
 This builds `konmari.skill` and installs it into `~/.claude/skills/` by default.
+
+### FAQ
+
+**Where is `konmari.skill`?**
+- It is generated from `skill_package/` and may not be committed.
+- Download it from the GitHub Releases assets, or run `./scripts/install_skill.sh` (or `make install`) in this repo to build it locally.
 
 #### Manual Installation
 

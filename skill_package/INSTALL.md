@@ -25,6 +25,8 @@ Download `konmari.skill` from the repository:
 - Via GitHub Releases: Download the latest `.skill` file
 - Or build from source (see Method 2)
 
+Note: `konmari.skill` is generated from `skill_package/` and may not be committed in the repo.
+
 #### Step 2: Locate Your Skills Directory
 
 Claude Code/Cursor stores skills in:
@@ -32,9 +34,19 @@ Claude Code/Cursor stores skills in:
 ~/.claude/skills/
 ```
 
+Codex CLI uses:
+```
+~/.codex/skills/
+```
+
 If this directory doesn't exist, create it:
 ```bash
 mkdir -p ~/.claude/skills
+```
+
+For Codex CLI:
+```bash
+mkdir -p ~/.codex/skills
 ```
 
 #### Step 3: Install the Skill
@@ -58,7 +70,32 @@ Restart your IDE or refresh the skill list. In Claude Code/Cursor, try:
 
 The skill should trigger with documentation.
 
-### Method 2: Standalone Python Script
+### Method 2: Build and Install from Source
+
+If you have the repo cloned, the fastest path is:
+
+```bash
+./scripts/install_skill.sh
+```
+
+This builds `konmari.skill` and installs it into `~/.claude/skills/` by default.
+If `CODEX_HOME` is set, it installs to `$CODEX_HOME/skills`.
+To install elsewhere, pass a directory or full `.skill` path:
+
+```bash
+./scripts/install_skill.sh /path/to/skills
+./scripts/install_skill.sh /path/to/skills/konmari.skill
+```
+
+You can also use:
+
+```bash
+make install
+```
+
+These scripts live in the repository, not inside the `.skill` bundle.
+
+### Method 3: Standalone Python Script
 
 Use the analyzer directly as a command-line tool.
 
@@ -96,7 +133,7 @@ sudo apt-get install python3 python3-pip
 #### Step 3: Make Script Executable (Optional)
 
 ```bash
-chmod +x scripts/analyze_repo.py
+chmod +x analyze_repo.py
 ```
 
 #### Step 4: Add to PATH (Optional)
@@ -104,10 +141,10 @@ chmod +x scripts/analyze_repo.py
 For system-wide access:
 ```bash
 # Create symlink
-sudo ln -s $(pwd)/scripts/analyze_repo.py /usr/local/bin/konmari
+sudo ln -s $(pwd)/analyze_repo.py /usr/local/bin/konmari
 
 # Or add to PATH in ~/.bashrc or ~/.zshrc
-echo 'export PATH="$PATH:/path/to/konmari/scripts"' >> ~/.bashrc
+echo 'export PATH="$PATH:/path/to/konmari"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
@@ -115,16 +152,16 @@ source ~/.bashrc
 
 ```bash
 # Analyze current directory
-python3 scripts/analyze_repo.py
+python3 analyze_repo.py
 
 # Analyze specific directory
-python3 scripts/analyze_repo.py /path/to/repo
+python3 analyze_repo.py /path/to/repo
 
 # If in PATH
 konmari /path/to/repo
 ```
 
-### Method 3: Install as Python Package
+### Method 4: Install as Python Package
 
 For users who prefer pip installation:
 
@@ -139,6 +176,12 @@ pip install konmari-skill
 # Run
 konmari /path/to/repo
 ```
+
+## FAQ
+
+**Where is `konmari.skill`?**
+- It is generated from `skill_package/` and may not be committed.
+- Download it from the GitHub Releases assets, or build it locally from the repo.
 
 ## Verification
 

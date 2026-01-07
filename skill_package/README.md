@@ -25,17 +25,35 @@ KonMari is a skill that performs end-of-session closeout rituals for development
 - Python 3.7 or higher
 - A git repository (optional but recommended for full analysis)
 
-### Installation
+### Installation (Pick One)
 
 #### For Skill-Based AI Assistants
 
-1. Download the `konmari.skill` file from this repository
-2. Install it in your AI assistant's skills directory
-3. Restart or refresh your skill list
+If you already have `konmari.skill`, just copy it into your assistant’s skills folder and refresh.
 
-If your AI tool uses a different skill-loading mechanism, keep the same `konmari.skill` file and follow your tool's instructions for loading skills.
+If you do not have `konmari.skill`, download it from the GitHub Releases assets or build it from the repo.
 
-#### For Claude Code / Cursor Users
+Note: `konmari.skill` is generated from `skill_package/` and may not be committed in the repo.
+
+#### Common Skills Folders
+
+Use the folder that matches your tool:
+- Claude Code / Cursor: `~/.claude/skills/`
+- Codex CLI: `$CODEX_HOME/skills` (default is `~/.codex/skills/`)
+- Other assistants: use their skills directory and copy `konmari.skill` there
+
+#### If You Cloned the Repo
+
+The repo includes helper scripts to build and install:
+
+```bash
+./scripts/install_skill.sh
+make install
+```
+
+These scripts live in the repository, not inside the `.skill` bundle.
+
+#### For Claude Code / Cursor Users (Manual)
 
 1. Download the `konmari.skill` file from this repository
 2. Install it in your Claude Code skills directory:
@@ -60,6 +78,12 @@ See [INSTALL.md](INSTALL.md) for detailed installation instructions.
 - Works with any AI assistant that can load `.skill` bundles or execute the analyzer script.
 - If your AI tool does not support scripts, you can still use the workflow in `SKILL.md` and manually gather the repo facts.
 - Expand AI artifact detection by editing `AI_TOOL_ARTIFACTS` and `AI_COMMIT_SIGNATURES` in `analyze_repo.py`.
+
+### FAQ
+
+**Where is `konmari.skill`?**
+- It is generated from `skill_package/` and may not be committed.
+- Download it from the GitHub Releases assets, or build it locally from the repo.
 
 ## Usage
 

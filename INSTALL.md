@@ -79,11 +79,18 @@ If you have this repo cloned, the fastest path is:
 ```
 
 This builds `konmari.skill` and installs it into `~/.claude/skills/` by default.
+If `CODEX_HOME` is set, it installs to `$CODEX_HOME/skills`.
 To install elsewhere, pass a directory or full `.skill` path:
 
 ```bash
 ./scripts/install_skill.sh /path/to/skills
 ./scripts/install_skill.sh /path/to/skills/konmari.skill
+```
+
+You can also use:
+
+```bash
+make install
 ```
 
 ### Method 3: Standalone Python Script
@@ -167,6 +174,12 @@ pip install konmari-skill
 # Run
 konmari /path/to/repo
 ```
+
+## FAQ
+
+**Where is `konmari.skill`?**
+- It is generated from `skill_package/` and may not be committed.
+- Download it from the GitHub Releases assets, or run `./scripts/install_skill.sh` (or `make install`) in this repo to build it locally.
 
 ## Verification
 
