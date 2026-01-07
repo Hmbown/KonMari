@@ -29,20 +29,32 @@ KonMari is a skill that performs end-of-session closeout rituals for development
 
 #### For Skill-Based AI Assistants
 
-1. Download the `konmari.skill` file from this repository
+1. Download the `konmari.skill` file from this repository (or build it locally)
 2. Install it in your AI assistant's skills directory
 3. Restart or refresh your skill list
 
 If your AI tool uses a different skill-loading mechanism, keep the same `konmari.skill` file and follow your tool's instructions for loading skills.
 
+Note: `konmari.skill` is generated from `skill_package/` and may not be committed in the repo. Use the build/install script if you don't see it.
+
 #### For Claude Code / Cursor Users
 
-1. Download the `konmari.skill` file from this repository
+1. Download the `konmari.skill` file from this repository (or build it locally)
 2. Install it in your Claude Code skills directory:
    ```
    ~/.claude/skills/konmari.skill
    ```
 3. Restart your IDE or refresh your skill list
+
+#### Build and Install Locally (Fastest)
+
+If you cloned the repo, you can build and install with one command:
+
+```bash
+./scripts/install_skill.sh
+```
+
+This builds `konmari.skill` and installs it into `~/.claude/skills/` by default.
 
 #### Manual Installation
 
