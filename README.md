@@ -49,7 +49,7 @@ Grab `konmari.skill` from [GitHub Releases](https://github.com/Hmbown/KonMari/re
 python3 analyze_repo.py /path/to/repo
 ```
 
-See [INSTALL.md](INSTALL.md) for detailed instructions.
+See [konmari/INSTALL.md](konmari/INSTALL.md) for detailed instructions.
 
 ## Usage
 
@@ -154,14 +154,14 @@ Each proposed deletion includes a gratitude message acknowledging the item's ser
 
 ## Documentation
 
-- [SKILL.md](SKILL.md) - Complete documentation with workflow and philosophy
-- [INSTALL.md](INSTALL.md) - Detailed installation instructions
-- [examples/](examples/) - Sample outputs and usage demos
-- [CHANGELOG.md](CHANGELOG.md) - Version history and release notes
+- [konmari/SKILL.md](konmari/SKILL.md) - Complete documentation with workflow and philosophy
+- [konmari/INSTALL.md](konmari/INSTALL.md) - Detailed installation instructions
+- [konmari/examples/](konmari/examples/) - Sample outputs and usage demos
+- [konmari/CHANGELOG.md](konmari/CHANGELOG.md) - Version history and release notes
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
+See [konmari/CONTRIBUTING.md](konmari/CONTRIBUTING.md) for guidelines on:
 
 - Bug reports
 - Feature requests
