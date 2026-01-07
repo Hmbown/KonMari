@@ -24,7 +24,7 @@ jobs:
 
     - name: Verify script syntax
       run: |
-        python -m py_compile scripts/analyze_repo.py
+        python -m py_compile analyze_repo.py
 
     - name: Verify JSON output format
       run: |
@@ -40,20 +40,46 @@ jobs:
           fi
         done
 
-  validate-skill:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
+    build-and-validate-skill:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v4
 
-    - name: Validate skill package
-      run: |
-        # Verify konmari.skill is a valid zip
-        unzip -t konmari.skill || exit 1
+      - name: Build skill package
+        run: |
+          # Create skill package directory structure
+          mkdir -p skill_package/scripts skill_package/references skill_package/examples
 
-        # Verify required files exist in skill package
-        unzip -l konmari.skill | grep -q "SKILL.md" || exit 1
-        unzip -l konmari.skill | grep -q "scripts/analyze_repo.py" || exit 1
-        unzip -l konmari.skill | grep -q "LICENSE" || exit 1
+          # Copy all required files
+          cp SKILL.md skill_package/
+          cp LICENSE skill_package/
+          cp CHANGELOG.md skill_package/
+          cp INSTALL.md skill_package/
+          cp README.md skill_package/
+          cp CONTRIBUTING.md skill_package/
+          cp pyproject.toml skill_package/
+          cp requirements.txt skill_package/
+          cp gratitude_templates.md skill_package/references/
+          cp context_limits.md skill_package/references/
+          cp analyze_repo.py skill_package/scripts/
 
-        echo "Skill package validation passed"
+          # Copy examples directory
+          cp -r examples skill_package/
+
+          # Create konmari.skill package
+          zip -r konmari.skill skill_package
+
+      - name: Validate skill package
+        run: |
+          # Verify konmari.skill is a valid zip
+          unzip -t konmari.skill || exit 1
+
+          # Verify required files exist in skill package
+          unzip -l konmari.skill | grep -q "SKILL.md" || exit 1
+          unzip -l konmari.skill | grep -q "scripts/analyze_repo.py" || exit 1
+          unzip -l konmari.skill | grep -q "LICENSE" || exit 1
+          unzip -l konmari.skill | grep -q "README.md" || exit 1
+          unzip -l konmari.skill | grep -q "INSTALL.md" || exit 1
+
+          echo "✓ Skill package built and validated successfully"
 
