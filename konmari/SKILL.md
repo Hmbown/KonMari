@@ -64,7 +64,7 @@ Ask the user:
 Execute the analyzer following the sacred order:
 
 ```bash
-python3 analyze_repo.py /path/to/repo
+python3 scripts/analyze_repo.py /path/to/repo
 ```
 
 The script outputs structured JSON with:
@@ -242,7 +242,7 @@ After execution, append to CLEANUP_PROPOSAL.md:
 
 ## AI Tool Integration
 
-This skill detects AI tool session patterns (expand as needed in `analyze_repo.py`):
+This skill detects AI tool session patterns (expand as needed in `scripts/analyze_repo.py`):
 
 - **Commit signatures**: `Generated with Claude Code`, `Co-Authored-By: Claude`, `Co-Authored-By: GitHub Copilot`, `Generated with Codex`
 - **Session artifacts**: `CLAUDE-CONTEXT.md`, `PLAN.md`, `DEBUG.md`, `AI-CONTEXT.md`

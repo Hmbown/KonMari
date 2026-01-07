@@ -167,7 +167,7 @@ KonMari supports multiple dependency ecosystems. Adding a new one involves:
 
 ### Step 1: Add Ecosystem Marker
 
-Edit `ECOSYSTEM_MARKERS` in `analyze_repo.py`:
+Edit `ECOSYSTEM_MARKERS` in `scripts/analyze_repo.py`:
 
 ```python
 ECOSYSTEM_MARKERS = {

@@ -46,7 +46,7 @@ Grab `konmari.skill` from [GitHub Releases](https://github.com/Hmbown/KonMari/re
 **Option 3: Run the Script Directly**
 
 ```bash
-python3 analyze_repo.py /path/to/repo
+python3 konmari/scripts/analyze_repo.py /path/to/repo
 ```
 
 See [konmari/INSTALL.md](konmari/INSTALL.md) for detailed instructions.

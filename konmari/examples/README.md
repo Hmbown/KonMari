@@ -12,7 +12,7 @@ This directory contains example outputs and usage demonstrations for the KonMari
 
 ### Analysis JSON Structure
 
-The `analyze_repo.py` script outputs structured JSON with these sections:
+The `scripts/analyze_repo.py` script outputs structured JSON with these sections:
 
 ```json
 {
@@ -195,7 +195,7 @@ These messages are randomly selected from templates in `references/gratitude_tem
 The skill is designed to integrate seamlessly into Claude Code/Cursor conversations:
 
 1. **User triggers skill**: "clean up this repo"
-2. **AI runs analysis**: Executes `analyze_repo.py` silently
+2. **AI runs analysis**: Executes `scripts/analyze_repo.py` silently
 3. **AI presents results**: Walks through each category in sacred order
 4. **User approves**: "Yes, delete those"
 5. **AI expresses gratitude**: Reads the gratitude message aloud
@@ -255,4 +255,3 @@ For more information, see the main documentation:
 - [SKILL.md](../SKILL.md) - Complete reference
 - [README.md](../README.md) - User guide
 - [INSTALL.md](../INSTALL.md) - Installation
-

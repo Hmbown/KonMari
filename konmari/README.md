@@ -65,10 +65,10 @@ These scripts live in the repository, not inside the `.skill` bundle.
 #### Manual Installation
 
 1. Clone this repository
-2. Ensure `analyze_repo.py` is executable
+2. Ensure `scripts/analyze_repo.py` is executable
 3. Add the script to your PATH or run directly:
    ```bash
-   python3 /path/to/analyze_repo.py /path/to/repo
+   python3 /path/to/konmari/scripts/analyze_repo.py /path/to/repo
    ```
 
 See [INSTALL.md](INSTALL.md) for detailed installation instructions.
@@ -77,7 +77,7 @@ See [INSTALL.md](INSTALL.md) for detailed installation instructions.
 
 - Works with any AI assistant that can load `.skill` bundles or execute the analyzer script.
 - If your AI tool does not support scripts, you can still use the workflow in `SKILL.md` and manually gather the repo facts.
-- Expand AI artifact detection by editing `AI_TOOL_ARTIFACTS` and `AI_COMMIT_SIGNATURES` in `analyze_repo.py`.
+- Expand AI artifact detection by editing `AI_TOOL_ARTIFACTS` and `AI_COMMIT_SIGNATURES` in `scripts/analyze_repo.py`.
 
 ### FAQ
 

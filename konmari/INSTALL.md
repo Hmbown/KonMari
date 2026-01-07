@@ -133,7 +133,7 @@ sudo apt-get install python3 python3-pip
 #### Step 3: Make Script Executable (Optional)
 
 ```bash
-chmod +x analyze_repo.py
+chmod +x scripts/analyze_repo.py
 ```
 
 #### Step 4: Add to PATH (Optional)
@@ -141,7 +141,7 @@ chmod +x analyze_repo.py
 For system-wide access:
 ```bash
 # Create symlink
-sudo ln -s $(pwd)/analyze_repo.py /usr/local/bin/konmari
+sudo ln -s $(pwd)/scripts/analyze_repo.py /usr/local/bin/konmari
 
 # Or add to PATH in ~/.bashrc or ~/.zshrc
 echo 'export PATH="$PATH:/path/to/konmari"' >> ~/.bashrc
@@ -152,10 +152,10 @@ source ~/.bashrc
 
 ```bash
 # Analyze current directory
-python3 analyze_repo.py
+python3 scripts/analyze_repo.py
 
 # Analyze specific directory
-python3 analyze_repo.py /path/to/repo
+python3 scripts/analyze_repo.py /path/to/repo
 
 # If in PATH
 konmari /path/to/repo
@@ -189,7 +189,7 @@ konmari /path/to/repo
 
 Run the analyzer on the konmari repository itself:
 ```bash
-python3 analyze_repo.py /path/to/konmari
+python3 scripts/analyze_repo.py /path/to/konmari
 ```
 
 Expected output: JSON structure with categories and findings. The repo should show as "already sparks joy" since it's well-maintained.
@@ -203,7 +203,7 @@ clean up this repo
 
 Expected behavior:
 1. AI asks about your ideal codebase vision
-2. Runs `analyze_repo.py` on the repository
+2. Runs `scripts/analyze_repo.py` on the repository
 3. Presents findings organized by KonMari categories
 4. Generates `CLEANUP_PROPOSAL.md`
 5. Walks through each item with approval prompts
@@ -220,7 +220,7 @@ Expected behavior:
 
 ### Permission Denied
 
-**Error**: `Permission denied: analyze_repo.py`
+**Error**: `Permission denied: scripts/analyze_repo.py`
 
 **Solution**:
 ```bash
@@ -285,7 +285,7 @@ The skill uses templates in `references/gratitude_templates.md`. Customize by ed
 
 ### Adding New Ecosystems
 
-Edit `analyze_repo.py` to add new ecosystem detection:
+Edit `scripts/analyze_repo.py` to add new ecosystem detection:
 
 1. Add marker to `ECOSYSTEM_MARKERS` dictionary
 2. Implement `find_orphaned_*_deps()` function
