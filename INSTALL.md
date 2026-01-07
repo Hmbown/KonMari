@@ -34,9 +34,19 @@ Claude Code/Cursor stores skills in:
 ~/.claude/skills/
 ```
 
+Codex CLI uses:
+```
+~/.codex/skills/
+```
+
 If this directory doesn't exist, create it:
 ```bash
 mkdir -p ~/.claude/skills
+```
+
+For Codex CLI:
+```bash
+mkdir -p ~/.codex/skills
 ```
 
 #### Step 3: Install the Skill

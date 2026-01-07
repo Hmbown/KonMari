@@ -25,19 +25,39 @@ KonMari is a skill that performs end-of-session closeout rituals for development
 - Python 3.7 or higher
 - A git repository (optional but recommended for full analysis)
 
-### Installation
+### Installation (Pick One)
 
 #### For Skill-Based AI Assistants
 
-1. Download the `konmari.skill` file from this repository (or build it locally)
-2. Install it in your AI assistant's skills directory
-3. Restart or refresh your skill list
+If you already have `konmari.skill`, just copy it into your assistant’s skills folder and refresh.
 
-If your AI tool uses a different skill-loading mechanism, keep the same `konmari.skill` file and follow your tool's instructions for loading skills.
+If you do not have `konmari.skill`, build and install it from this repo with one command:
 
-Note: `konmari.skill` is generated from `skill_package/` and may not be committed in the repo. Use the build/install script if you don't see it.
+```bash
+./scripts/install_skill.sh
+```
 
-#### For Claude Code / Cursor Users
+This builds `konmari.skill` and installs it into `~/.claude/skills/` by default.
+
+Note: `konmari.skill` is generated from `skill_package/` and may not be committed in the repo.
+
+#### Common Skills Folders
+
+Use the folder that matches your tool:
+- Claude Code / Cursor: `~/.claude/skills/`
+- Codex CLI: `$CODEX_HOME/skills` (default is `~/.codex/skills/`)
+- Other assistants: use their skills directory and copy `konmari.skill` there
+
+#### If You Want a Single Command (All Tools)
+
+You can pass a custom target directory (or full file path) to the installer:
+
+```bash
+./scripts/install_skill.sh /path/to/skills
+./scripts/install_skill.sh /path/to/skills/konmari.skill
+```
+
+#### For Claude Code / Cursor Users (Manual)
 
 1. Download the `konmari.skill` file from this repository (or build it locally)
 2. Install it in your Claude Code skills directory:
