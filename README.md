@@ -22,88 +22,34 @@ KonMari is a skill that performs end-of-session closeout rituals for development
 ## Quick Start
 
 ### Prerequisites
-- Python 3.7 or higher
-- A git repository (optional but recommended for full analysis)
+- Python 3.7+
+- Git repository (optional but recommended)
 
-### Installation (Pick One)
+### Installation
 
-#### For Skill-Based AI Assistants
-
-If you already have `konmari.skill`, just copy it into your assistant’s skills folder and refresh.
-
-If you do not have `konmari.skill`, build and install it from this repo with one command:
+**Option 1: Install the Skill** (recommended for Claude Code, Cursor, etc.)
 
 ```bash
 ./scripts/install_skill.sh
 ```
 
-This builds `konmari.skill` and installs it into `~/.claude/skills/` by default. If `CODEX_HOME` is set, it installs to `$CODEX_HOME/skills`.
-
-You can also use:
+This builds `konmari.skill` and installs it to `~/.claude/skills/`. Pass a custom path if needed:
 
 ```bash
-make install
+./scripts/install_skill.sh /path/to/skills/
 ```
 
-Note: `konmari.skill` is generated from `skill_package/` and may not be committed in the repo.
+**Option 2: Download from Releases**
 
-#### Common Skills Folders
+Grab `konmari.skill` from [GitHub Releases](https://github.com/Hmbown/KonMari/releases) and copy to your skills folder.
 
-Use the folder that matches your tool:
-- Claude Code / Cursor: `~/.claude/skills/`
-- Codex CLI: `$CODEX_HOME/skills` (default is `~/.codex/skills/`)
-- Other assistants: use their skills directory and copy `konmari.skill` there
-
-#### If You Want a Single Command (All Tools)
-
-You can pass a custom target directory (or full file path) to the installer:
+**Option 3: Run the Script Directly**
 
 ```bash
-./scripts/install_skill.sh /path/to/skills
-./scripts/install_skill.sh /path/to/skills/konmari.skill
+python3 analyze_repo.py /path/to/repo
 ```
 
-#### For Claude Code / Cursor Users (Manual)
-
-1. Download the `konmari.skill` file from this repository (or build it locally)
-2. Install it in your Claude Code skills directory:
-   ```
-   ~/.claude/skills/konmari.skill
-   ```
-3. Restart your IDE or refresh your skill list
-
-#### Build and Install Locally (Fastest)
-
-If you cloned the repo, you can build and install with one command:
-
-```bash
-./scripts/install_skill.sh
-```
-
-This builds `konmari.skill` and installs it into `~/.claude/skills/` by default.
-
-### FAQ
-
-**Where is `konmari.skill`?**
-- It is generated from `skill_package/` and may not be committed.
-- Download it from the GitHub Releases assets, or run `./scripts/install_skill.sh` (or `make install`) in this repo to build it locally.
-
-#### Manual Installation
-
-1. Clone this repository
-2. Ensure `analyze_repo.py` is executable
-3. Add the script to your PATH or run directly:
-   ```bash
-   python3 /path/to/analyze_repo.py /path/to/repo
-   ```
-
-See [INSTALL.md](INSTALL.md) for detailed installation instructions.
-
-### Compatibility Notes
-
-- Works with any AI assistant that can load `.skill` bundles or execute the analyzer script.
-- If your AI tool does not support scripts, you can still use the workflow in `SKILL.md` and manually gather the repo facts.
-- Expand AI artifact detection by editing `AI_TOOL_ARTIFACTS` and `AI_COMMIT_SIGNATURES` in `analyze_repo.py`.
+See [INSTALL.md](INSTALL.md) for detailed instructions.
 
 ## Usage
 

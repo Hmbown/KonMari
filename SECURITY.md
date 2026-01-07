@@ -11,7 +11,7 @@ If you discover a security vulnerability in KonMari, please report it to us resp
 **How to Report:**
 
 1. **Do not** create a public GitHub issue
-2. **Do** send an email to [TODO: add security email]
+2. **Do** use [GitHub's private vulnerability reporting](https://github.com/Hmbown/KonMari/security/advisories/new)
    - Include a detailed description of the vulnerability
    - Include steps to reproduce the vulnerability
    - Include any potential impact or exploit
@@ -90,7 +90,7 @@ We will:
 ## Contact
 
 For security questions or concerns:
-- Email: [TODO: add security email]
+- Security: [Report a vulnerability](https://github.com/Hmbown/KonMari/security/advisories/new)
 - GitHub Issues: Use "security" label for non-critical concerns
 - Repository: https://github.com/Hmbown/KonMari
 

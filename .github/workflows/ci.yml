@@ -24,4 +24,4 @@ jobs:
           rm -rf /tmp/skill_bundle
           mkdir -p /tmp/skill_bundle
           unzip -q konmari.skill -d /tmp/skill_bundle
-          diff -r skill_package /tmp/skill_bundle
+          diff -r konmari /tmp/skill_bundle

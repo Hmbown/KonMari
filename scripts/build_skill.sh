@@ -6,7 +6,7 @@ cd "$root_dir"
 
 rm -f konmari.skill
 (
-  cd skill_package
+  cd konmari
   zip -r ../konmari.skill .
 )
 

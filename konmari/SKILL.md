@@ -1,6 +1,7 @@
 ---
 name: konmari
-description: Repository hygiene skill inspired by Marie Kondo's KonMari Method. An end-of-session closeout ritual for AI-assisted development across any skill-capable AI or agent. Triggers on "clean up this repo", "what files can I delete", "reduce context bloat", "find stale files", "what doesn't spark joy", "wrap up", "done for today", "close out session", "end of task", "tidy up", "declutter", "/konmari".
+description: Repository cleanup skill inspired by Marie Kondo's KonMari Method. Analyzes repos for dead files, unused dependencies, stale docs, orphaned configs, and legacy code. Triggers on cleanup commands like "tidy up", "declutter", or "/konmari".
+license: MIT
 ---
 
 # KonMari Repository Decluttering
